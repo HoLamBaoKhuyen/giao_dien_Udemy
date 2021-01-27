@@ -1,0 +1,1119 @@
+@import "./theme/theme";
+@import "./helpers/mixin";
+
+//GLOBAL CSS
+.big-container {
+  margin: 0 80px;
+  @include MediaQuery($lg) {
+    margin: 0;
+  }
+}
+
+//END GLOBAL CSS
+
+// HEADER
+.header {
+  position: relative;
+  border-bottom: 1px solid $lightGrey;
+  box-shadow: 0 0 10px 1px $lightGrey;
+  height: 70px;
+  padding: 0 20px;
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+
+  @include MediaQuery($sm) {
+    height: 50px;
+  }
+  @include MediaQuery($xs) {
+    height: 40px;
+  }
+  &::before {
+    position: absolute;
+    top: -8px;
+    left: 0;
+    content: "";
+    background: linear-gradient(
+      to right,
+      $darkGrey,
+      red,
+      orange,
+      yellow,
+      green,
+      $secondary,
+      purple,
+      pink
+    );
+    height: 8px;
+    width: 100%;
+  }
+
+  &__bars {
+    border: none;
+    background-color: transparent;
+  }
+  &__categories {
+    cursor: pointer;
+    &:hover {
+      color: $textSecondary;
+    }
+  }
+  &__logo {
+    img {
+      width: 110px;
+      margin-right: 30px;
+      @include MediaQuery($xs) {
+        width: 90px;
+      }
+    }
+    @media screen and (max-width: 768px) {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    // @include MediaQuery($sm){
+    //   width: 80%;
+    // }
+  }
+
+  span {
+    @include Text($textDarkGrey, $h6, $fwRegular);
+    margin-right: 30px;
+  }
+  &__search {
+    flex-grow: 1;
+    border: 1px solid $lightGrey;
+    border-radius: 200px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    &:hover {
+      border-color: $darkYellow;
+    }
+    input {
+      @include Input($textLightGrey, $h6, $fwRegular, none, transparent, 10px);
+      outline: none;
+    }
+    i {
+      padding: 0 15px;
+      cursor: pointer;
+      @include MediaQuery($md) {
+        position: absolute;
+        right: 0;
+      }
+    }
+    @include MediaQuery($md) {
+      border: none;
+    }
+  }
+  &__nav {
+    margin-left: 20px;
+    @include Text($textDarkGrey, $h6, $fwRegular);
+    &:hover {
+      color: $textSecondary;
+      text-decoration: none;
+    }
+  }
+  &__dropdown {
+    position: relative;
+    display: inline-block;
+    &:hover .dropdown-content {
+      display: block;
+    }
+    &:hover .dropbtn {
+      background-color: $paper;
+      color: $textSecondary;
+    }
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: $paper;
+      min-width: 280px;
+      border: 1px solid $lightGrey;
+      z-index: 1;
+      text-align: center;
+      padding: 20px;
+      p {
+        @include Text($textPrimary, $h5, $fwBold);
+      }
+      button:last-child {
+        @include Button(
+          $textWhite,
+          $h6,
+          $fwBold,
+          50px,
+          100%,
+          $secondary,
+          none,
+          0
+        );
+        border-radius: 5px;
+        text-align: center;
+      }
+    }
+    .dropbtn {
+      @include Button(
+        $textDarkGrey,
+        $h6,
+        $fwRegular,
+        100%,
+        160px,
+        $paper,
+        none,
+        0 0 0 5px
+      );
+      cursor: pointer;
+    }
+    &.item--3 {
+      .dropbtn {
+        width: 30px;
+        padding-right: 30px;
+      }
+
+      p {
+        @include Text($textDarkGrey, $h6, $fwRegular);
+      }
+      .dropdown-content button:last-child {
+        @include Button(
+          $textSecondary,
+          $h6,
+          $fwBold,
+          50px,
+          100%,
+          $paper,
+          none,
+          0
+        );
+        border-radius: 5px;
+        text-align: center;
+      }
+    }
+  }
+
+  &__button {
+    &.button--1 {
+      @include Button(
+        $textSecondary,
+        $h6,
+        $fwBold,
+        43px,
+        110px,
+        $primary,
+        1px solid $lightGrey,
+        0px
+      );
+      margin: 0 5px;
+      border-radius: 5px;
+      &:hover {
+        border-color: $darkYellow;
+        color: $darkGreen;
+      }
+    }
+    &.button--2 {
+      @include Button(
+        $textWhite,
+        $h6,
+        $fwBold,
+        43px,
+        110px,
+        $secondary,
+        1px solid $secondary,
+        0px
+      );
+      margin: 0 5px;
+      border-radius: 5px;
+      &:hover {
+        background-color: $darkGreen;
+      }
+    }
+  }
+}
+
+//CAROUSEL
+.carousel {
+  .big-container {
+    position: relative;
+    .carousel__form {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
+      background: $paper;
+      height: 250px;
+      width: 430px;
+      padding: 20px;
+      margin-left: 30px;
+      @include MediaQuery($lg) {
+        width: 350px;
+      }
+      @include MediaQuery($sm) {
+        position: static;
+        transform: translateY(0);
+        background: $paper;
+        width: 100%;
+        padding: 20px;
+        margin: 0;
+        height: auto;
+      }
+      @include MediaQuery($xs) {
+        transform: scale(0.9, 0.9);
+        padding: 0;
+        // position: absolute;
+        // top: 0;
+        // left: 0;
+      }
+      h1 {
+        @include Text($textPrimary, $h1, $fwBold);
+        @include MediaQuery($lg) {
+          font-size: $h3;
+        }
+      }
+      p {
+        @include Text($textDarkGrey, $h6, $fwRegular);
+      }
+      &__search {
+        display: flex;
+        justify-content: space-between;
+        border: 1px solid $lightGrey;
+        border-radius: 5px;
+        height: 50px;
+        padding: 0 20px;
+
+        &:hover {
+          border-color: $darkYellow;
+        }
+        input {
+          outline: none;
+          @include Input($textLightGrey, $h6, $fwRegular, none, transparent, 0);
+          flex-grow: 1;
+          @include MediaQuery($sm) {
+            height: auto;
+          }
+        }
+        button {
+          @include Button(
+            $textLightGrey,
+            $h6,
+            $fwRegular,
+            auto,
+            auto,
+            transparent,
+            none,
+            0
+          );
+        }
+      }
+    }
+  }
+}
+
+// COURSES
+.courses {
+  padding-top: 60px;
+  h3 {
+    @include Text($textDarkGrey, $h3-5, $fwBold);
+    @include MediaQuery($xs) {
+      display: none;
+    }
+  }
+  p {
+    @include Text($textLightGrey, $h6, $fwRegular);
+    @include MediaQuery($xs) {
+      display: none;
+    }
+  }
+  &__slider {
+    position: relative;
+    height: 500px;
+
+    .nav-item {
+      position: relative;
+      .nav-link {
+        @include Text($textLightGrey, $h6, $fwBold);
+        padding: 10px;
+        border: none;
+      }
+      .active {
+        @include Text($textDarkGrey, $h6, $fwBold);
+        &::after {
+          content: "";
+          background: $darkGrey;
+          height: 2px;
+          width: 100%;
+          position: absolute;
+          bottom: 0;
+          left: 0;
+        }
+      }
+    }
+
+    .swiper-slide {
+      width: 20%;
+      height: 120%;
+      padding: 30px 10px 120px 10px;
+
+      @include MediaQuery($lg) {
+        width: 25%;
+      }
+      @include MediaQuery($md) {
+        width: 33%;
+      }
+      @include MediaQuery($sm) {
+        width: 50%;
+      }
+      @include MediaQuery($xs) {
+        padding-bottom: 0;
+      }
+
+      &__img {
+        overflow: hidden;
+        position: relative;
+        border-radius: 5px;
+        img {
+          border-radius: 5px;
+          border: 1px solid $lightGrey;
+          border-bottom: 2px solid $darkGrey;
+        }
+        .overlay {
+          background: rgba(0, 0, 0, 0.3);
+          width: 100%;
+          height: 300px;
+          position: absolute;
+          top: 0;
+          left: 0;
+          opacity: 0;
+          transition: all 0.3s;
+        }
+      }
+
+      h6 {
+        margin-top: 10px;
+        @include Text($textDarkGrey, $h6, $fwBold);
+      }
+      span {
+        @include Text($textLightGrey, $h7, $fwLight);
+      }
+      .oldprice {
+        text-decoration: line-through;
+      }
+      .courses__evaluation {
+        margin: 0;
+        @include Text($textDarkOrange, $h6, $fwBold);
+        i {
+          @include Text($textLightOrange, $h6, $fwBold);
+        }
+      }
+      button {
+        margin-top: 10px;
+        @include Button(
+          $textBrown,
+          $h6,
+          $fwBold,
+          auto,
+          auto,
+          $lightYellow,
+          none,
+          3px 15px
+        );
+        border-radius: 5px;
+        align-self: center;
+      }
+
+      &__info {
+        position: absolute;
+        top: 0;
+        left: 90%;
+        background-color: $paper;
+        border: 1px solid $lightGrey;
+        box-shadow: 0 0 5px 0 $grey;
+        z-index: 10;
+        padding: 20px;
+        width: 130%;
+        display: none;
+        transition: all 0.3s;
+        h5 {
+          @include Text($textPrimary, $h5, $fwBold);
+          &:hover {
+            color: $textSecondary;
+          }
+        }
+        .time {
+          @include Text($textGreen, $h7, $fwLight);
+          span {
+            @include Text($textGreen, $h7, $fwBold);
+          }
+        }
+        p {
+          @include Text($textPrimary, $h7, $fwRegular);
+          margin: 10px 0;
+          span {
+            margin: 0 5px;
+          }
+        }
+        ul {
+          padding: 10px 0 0 20px;
+          @include Text($textPrimary, $h7, $fwRegular);
+        }
+        .add-to-cart {
+          @include Button(
+            $textWhite,
+            $h6,
+            $fwBold,
+            45px,
+            80%,
+            $lightRed,
+            none,
+            0
+          );
+          &:hover {
+            background-color: $red;
+          }
+        }
+        .heart {
+          @include Button(
+            $textSecondary,
+            $h6,
+            $fwBold,
+            45px,
+            45px,
+            transparent,
+            1px solid $lightGrey,
+            0
+          );
+          border-radius: 50%;
+          &:hover {
+            border-color: $grey;
+            color: $textDarkGrey;
+          }
+        }
+      }
+      &.item--last {
+        .swiper-slide__info {
+          left: -120%;
+        }
+      }
+
+      &:hover .swiper-slide__info {
+        display: block;
+        //opacity: 1;
+      }
+      &:hover .overlay {
+        opacity: 1;
+      }
+    }
+  }
+  @include MediaQuery($lg) {
+    padding: 0;
+    transform: scale(0.9, 0.9);
+  }
+  @include MediaQuery($sm) {
+    //padding-left: 20px;
+  }
+  @include MediaQuery($xs) {
+    padding-left: 0;
+  }
+}
+
+//VIEWING
+.viewing {
+  h3 {
+    @include Text($textDarkGrey, $h3-5, $fwBold);
+    @include MediaQuery($sm){
+     margin: 0;
+
+    }
+    @include MediaQuery($xs) {
+      font-size: $h4;
+      padding-left: 25px;
+      margin: 0;
+    }
+  }
+  p {
+    @include Text($textLightGrey, $h6, $fwRegular);
+  }
+  .carousel-item {
+    position: relative;
+
+    .swiper-slide {
+      width: 20%;
+      padding: 30px 10px 120px 10px;
+
+      @include MediaQuery($lg) {
+        width: 25%;
+      }
+      @include MediaQuery($md) {
+        width: 33%;
+      }
+      @include MediaQuery($sm) {
+        width: 50%;
+      }
+      @include MediaQuery($xs) {
+        padding-bottom: 40px;
+      }
+      
+      
+
+      &__img {
+        overflow: hidden;
+        position: relative;
+        border-radius: 5px;
+        img {
+          border-radius: 5px;
+          border: 1px solid $lightGrey;
+          border-bottom: 2px solid $darkGrey;
+        }
+        .overlay {
+          background: rgba(0, 0, 0, 0.3);
+          width: 100%;
+          height: 300px;
+          position: absolute;
+          top: 0;
+          left: 0;
+          opacity: 0;
+          transition: all 0.3s;
+        }
+      }
+
+      h6 {
+        margin-top: 10px;
+        @include Text($textDarkGrey, $h6, $fwBold);
+      }
+      span {
+        @include Text($textLightGrey, $h7, $fwLight);
+      }
+      .oldprice {
+        text-decoration: line-through;
+      }
+      .courses__evaluation {
+        margin: 0;
+        @include Text($textDarkOrange, $h6, $fwBold);
+        i {
+          @include Text($textLightOrange, $h6, $fwBold);
+        }
+      }
+      button {
+        margin-top: 10px;
+        @include Button(
+          $textBrown,
+          $h6,
+          $fwBold,
+          auto,
+          auto,
+          $lightYellow,
+          none,
+          3px 15px
+        );
+        border-radius: 5px;
+        align-self: center;
+      }
+
+      &__info {
+        position: absolute;
+        top: 0;
+        left: 90%;
+        background-color: $paper;
+        border: 1px solid $lightGrey;
+        box-shadow: 0 0 5px 0 $grey;
+        z-index: 10;
+        padding: 20px;
+        width: 130%;
+        display: none;
+        transition: all 0.3s;
+        h5 {
+          @include Text($textPrimary, $h5, $fwBold);
+          &:hover {
+            color: $textSecondary;
+          }
+        }
+        .time {
+          @include Text($textGreen, $h7, $fwLight);
+          span {
+            @include Text($textGreen, $h7, $fwBold);
+          }
+        }
+        p {
+          @include Text($textPrimary, $h7, $fwRegular);
+          margin: 10px 0;
+          span {
+            margin: 0 5px;
+          }
+        }
+        ul {
+          padding: 10px 0 0 20px;
+          @include Text($textPrimary, $h7, $fwRegular);
+        }
+        .add-to-cart {
+          @include Button(
+            $textWhite,
+            $h6,
+            $fwBold,
+            45px,
+            80%,
+            $lightRed,
+            none,
+            0
+          );
+          &:hover {
+            background-color: $red;
+          }
+        }
+        .heart {
+          @include Button(
+            $textSecondary,
+            $h6,
+            $fwBold,
+            45px,
+            45px,
+            transparent,
+            1px solid $lightGrey,
+            0
+          );
+          border-radius: 50%;
+          &:hover {
+            border-color: $grey;
+            color: $textDarkGrey;
+          }
+        }
+      }
+      &.item--last {
+        .swiper-slide__info {
+          left: -120%;
+        }
+      }
+
+      &:hover .swiper-slide__info {
+        display: block;
+        //opacity: 1;
+      }
+      &:hover .overlay {
+        opacity: 1;
+      }
+    }
+    @include MediaQuery($xs) {
+      transform: scale(0.9, 0.9);
+    }
+  }
+  // @include MediaQuery ($sm){
+  //   transform: scale(0.9,0.9);
+  // }
+  @include MediaQuery($lg) {
+    padding: 0;
+    transform: scale(0.9, 0.9);
+  }
+  @include MediaQuery($sm) {
+    //padding-left: 20px;
+  }
+  @include MediaQuery($xs) {
+    padding-left: 0;
+    transform: scale(1, 1);
+  }
+ 
+}
+
+//GET-STARTED
+.get-started {
+  border-radius: 5px;
+  text-align: center;
+  background: url(https:udemy-images.udemy.com/browse_components/shared-assets/purple-intersect.svg)
+    repeat-x #6e1a52;
+  &__content {
+    text-align: center;
+    padding: 30px;
+    margin: auto;
+    h3 {
+      @include Text($textWhite, $h3, $fwBold);
+      @include MediaQuery($xs) {
+        transform: scale(0.8, 0.8);
+      }
+    }
+    p {
+      @include Text($textWhite, $h5, $fwRegular);
+      @include MediaQuery($xs) {
+        transform: scale(0.8, 0.8);
+      }
+    }
+    button {
+      @include Button(
+        $textWhite,
+        $h6,
+        $fwBold,
+        auto,
+        auto,
+        transparent,
+        1px solid $paper,
+        10px
+      );
+      border-radius: 5px;
+      &:hover {
+        border-color: $darkYellow;
+      }
+      @include MediaQuery($xs) {
+        transform: scale(0.8, 0.8);
+      }
+    }
+  }
+}
+
+//TOP-CATEGORIES
+.top-categories {
+  padding-top: 50px;
+  @include MediaQuery($lg) {
+    padding: 50px 20px;
+  }
+  @include MediaQuery($xs) {
+    padding: 0 20px;
+  }
+
+  h3 {
+    @include Text($textDarkGrey, $h3-5, $fwBold);
+    @include MediaQuery($xs) {
+      font-size: $h4;
+      padding-top: 40px;
+    }
+  }
+
+  &__item {
+    text-align: center;
+    border: 1px solid $lightGrey;
+    border-radius: 5px;
+    margin: 10px 0;
+    &__content {
+      position: relative;
+      overflow: hidden;
+      border-radius: 5px;
+      img {
+        width: 100%;
+      }
+    }
+  }
+  p {
+    text-align: left;
+    margin: 10px 0 20px 20px;
+    @include Text($textDarkGrey, $h4, $fwBold);
+    @include MediaQuery($sm) {
+      font-size: $h6;
+    }
+  }
+
+  &__button {
+    button {
+      @include Button(
+        $textSecondary,
+        $h6,
+        $fwBold,
+        auto,
+        auto,
+        transparent,
+        1px solid $lightGrey,
+        8px 10px
+      );
+      border-radius: 200px;
+      margin: 5px 0;
+      &:hover {
+        border-color: $darkYellow;
+        color: $textDarkGreen;
+      }
+    }
+  }
+}
+
+//OTHER-INFO
+.other-info {
+  &__content {
+    border-bottom: 1px solid $lightGrey;
+    padding: 50px 0;
+    display: flex;
+    @include MediaQuery($sm){
+      border: none;
+    }
+    @include MediaQuery($xs) {
+      padding: 30px 0;
+    }
+    &.add-bg {
+      display: block;
+      @include MediaQuery($lg){
+        padding: 0;
+        //border: none;
+      }
+    }
+    &--video {
+      border-bottom: 1px solid $lightGrey;
+      @include MediaQuery($lg){
+        padding: 0;
+      }
+      @include MediaQuery($sm) {
+        display: block;
+      }
+    }
+    &__img {
+      width: 50%;
+      text-align: right;
+      padding-right: 40px;
+
+      @include MediaQuery($md) {
+        display: none;
+      }
+      &.img--2 {
+        text-align: left;
+        padding-left: 40px;
+      }
+    }
+    &__video {
+      text-align: right;
+      width: 60%;
+      overflow: hidden;
+      transform: scale(0.8, 0.8);
+      //padding: 10% 0;
+      iframe {
+        width: 100%;
+      }
+      @include MediaQuery($lg) {
+        transform: scale(0.7, 0.7);
+      }
+      @include MediaQuery($sm) {
+        transform: scale(0.8, 0.8);
+        width: 100%;
+        //padding: 20px;
+      }
+    }
+
+    &__info {
+      width: 30%;
+      padding-left: 40px;
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      @include MediaQuery($md) {
+        width: 100%;
+        text-align: center;
+      }
+      @include MediaQuery($xs) {
+        transform: scale(0.8, 0.8);
+        padding: 0;
+      }
+      h1 {
+        @include Text($textPrimary, $h3, $fwBold);
+      }
+      p {
+        @include Text($textDarkGrey, $h5, $fwRegular);
+      }
+      button {
+        text-align: center;
+        @include Button(
+          $textWhite,
+          $h6,
+          $fwBold,
+          auto,
+          200px,
+          $secondary,
+          none,
+          15px
+        );
+        border-radius: 5px;
+        &:hover {
+          background-color: $darkGreen;
+        }
+        @include MediaQuery($xs) {
+          width: 100%;
+        }
+      }
+      &.info--2 {
+        text-align: left;
+        width: 100%;
+        padding-left: 20%;
+        padding-right: 50%;
+        margin: 40px 0;
+        background-color: $darkGreen;
+        height: 290px;
+        position: relative;
+        @include MediaQuery($lg) {
+          padding-left: 10%;
+        }
+        @include MediaQuery($md) {
+          padding: 0 10%;
+          text-align: center;
+          width: 100%;
+          height: 250px;
+        }
+        @include MediaQuery($xs) {
+          margin: 0;
+          height: 230px;
+        }
+        h1,
+        p {
+          color: $textWhite;
+        }
+      }
+      .img--2 {
+        display: block;
+        width: auto;
+        position: absolute;
+        right: 20%;
+        @include MediaQuery($lg) {
+          right: 10%;
+        }
+        @include MediaQuery($md) {
+          display: none;
+        }
+      }
+      &.info--3 {
+        width: 40%;
+        text-align: left;
+        padding-left: 0;
+        padding-right: 5%;
+        @include MediaQuery($sm) {
+          width: 100%;
+          text-align: left;
+          padding-left: 20px;
+          padding-bottom: 30px;
+        }
+        @include MediaQuery($xs){
+          padding-left: 0;
+        }
+      }
+    }
+
+    .branch {
+      text-align: center;
+      width: 100%;
+      @include MediaQuery($xs) {
+        transform: scale(0.75, 0.75);
+      }
+      h3 {
+        @include Text($textPrimary, $h3-5, $fwBold);
+      }
+      img {
+        padding: 10px;
+      }
+      @include MediaQuery($sm){
+        padding: 0 20px;
+      }
+    }
+  }
+}
+
+//FOOTER
+.footer {
+  &__top {
+    padding-top: 30px;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    @include MediaQuery($lg) {
+      padding: 30px 10px;
+    }
+    @include MediaQuery($sm) {
+      padding: 70px 0 0 0;
+    }
+    @include MediaQuery($xs) {
+      transform: scale(0.9, 0.9);
+      padding-left: 0;
+    }
+    &__link {
+      width: 55%;
+      display: flex;
+      justify-content: space-between;
+      @include MediaQuery($sm) {
+        display: block;
+      }
+      ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        a {
+          //margin-left: 20px;
+          @include Text($textSecondary, $h7, $fwRegular);
+          // @include MediaQuery($md){
+          //   font-size: $body2;
+          // }
+          @include MediaQuery($sm) {
+            font-size: $subtitle;
+            padding-left: 20px;
+          }
+          @include MediaQuery($xs) {
+            font-size: $body2;
+           padding: 0;
+          }
+          &:hover {
+            color: $textDarkGreen;
+            text-decoration: none;
+          }
+        }
+      }
+    }
+    &__language {
+      height: 40px;
+      border: 1px solid $grey;
+      border-radius: 5px;
+      padding: 0 10px;
+
+      input {
+        @include Input(
+          $textPrimary,
+          $h6,
+          $fwRegular,
+          none,
+          transparent,
+          5px 10px
+        );
+        outline: none;
+      }
+      button {
+        @include Button(
+          $textLightGrey,
+          $h6,
+          $fwBold,
+          auto,
+          auto,
+          transparent,
+          none,
+          0
+        );
+      }
+      i {
+        color: $textLightGrey;
+      }
+
+      @include MediaQuery($sm) {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+      }
+      @include MediaQuery($xs){
+        left: 5px;
+      }
+    }
+  }
+
+  &__logo {
+    padding-top: 60px;
+    padding-bottom: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    @include MediaQuery($sm) {
+      display: block;
+      padding: 0;
+      margin-left: 20px;
+    }
+    a {
+      img {
+        width: 110px;
+        margin-right: 30px;
+        @include MediaQuery($sm) {
+          margin: 15px 0;
+        }
+        @include MediaQuery($xs) {
+          width: 90px;
+        }
+      }
+    }
+    p {
+      @include Text($textLightGrey, $h7, $fwRegular);
+      @include MediaQuery($xs) {
+        font-size: $body1;
+      }
+    }
+  }
+}
